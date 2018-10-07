@@ -1,11 +1,11 @@
 from receipt import Receipt
 
 def main():
-    home_screen()
+    print('Let\'s budget shit.')
+    options()
     budgeting()
 
-def home_screen():
-    print('Let\'s budget shit.')
+def options():
     print('''
     \t[v] View budget
     \t[a] Add cost
@@ -32,6 +32,7 @@ def budgeting():
         elif c == 'S':
             summary()
 
+        options()
         c = input()
         c = c.upper()
 

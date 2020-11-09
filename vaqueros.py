@@ -1,4 +1,5 @@
 from receipt import Receipt
+from database import Database
 
 def main():
     print('Let\'s budget shit.')

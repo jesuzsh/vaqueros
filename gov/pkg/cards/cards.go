@@ -1,7 +1,7 @@
 package cards
 
 import (
-	"errors"
+	//"errors"
 	"fmt"
 
 	"gorm.io/gorm"
@@ -19,8 +19,29 @@ func (cd Card) Describe() string {
 	return descr
 }
 
+func (cd Card) Save() {
+	db := database.MakeConnection()
+	db.AutoMigrate(&Card{})
+
+	fmt.Println(cd)
+	fmt.Println(&cd)
+
+	//db.Create(&cd)
+}
+
+func Show() {
+	var card Card
+	db := database.MakeConnection()
+	result := db.First(&card)
+	fmt.Printf("%T", result.Name)
+
+}
+
+/*
 func (cd *Card) populateID() {
 	db := database.MakeConnection()
+
+	db.Au
 	fmt.Println(db)
 	//new_id := db.GenerateCardID()
 	fmt.Println("Populating card ID.")
@@ -35,3 +56,4 @@ func NewCard(name string, owner string) (*Card, error) {
 
 	return cd, nil
 }
+*/

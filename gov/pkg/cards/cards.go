@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"gorm.io/gorm"
-	"v/database"
+	db "v/database"
 )
 
 type Card struct {
@@ -15,45 +15,14 @@ type Card struct {
 }
 
 func (cd Card) Describe() string {
-	descr := fmt.Sprintf("The %v card belongs to %v.", cd.Name, cd.Owner)
+	descr := fmt.Sprintf("The %v card belongs to %v. ID: %v", cd.Name, cd.Owner, cd.ID)
 	return descr
 }
 
 func (cd Card) Save() {
-	db := database.MakeConnection()
-	db.AutoMigrate(&Card{})
-
-	fmt.Println(cd)
-	fmt.Println(&cd)
-
-	//db.Create(&cd)
+	db.Save(Card)
 }
 
-func Show() {
-	var card Card
-	db := database.MakeConnection()
-	result := db.First(&card)
-	fmt.Printf("%T", result.Name)
-
+func List() {
+	db.List([]Card{})
 }
-
-/*
-func (cd *Card) populateID() {
-	db := database.MakeConnection()
-
-	db.Au
-	fmt.Println(db)
-	//new_id := db.GenerateCardID()
-	fmt.Println("Populating card ID.")
-}
-
-func NewCard(name string, owner string) (*Card, error) {
-	if name == "" || owner == "" {
-		return nil, errors.New("Missing a required field.")
-	}
-	cd := new(Card)
-	cd.populateID()
-
-	return cd, nil
-}
-*/

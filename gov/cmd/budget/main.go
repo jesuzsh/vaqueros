@@ -8,8 +8,8 @@ import (
 
 func main() {
 	fmt.Println("Welcome to your budget.")
-	cd := cards.Card{Name: "Amex", Owner: "Jesus"}
-	cd.Save()
-	//cards.Show()
-	fmt.Println(cd.Describe())
+	//cd := cards.Card{Name: "Chime", Owner: "Jesus"}
+	//cd.Save()
+	cards.List()
+	//fmt.Println(cd.Describe())
 }

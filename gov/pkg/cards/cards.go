@@ -6,35 +6,34 @@ import (
 
 	"gorm.io/gorm"
 	"v/database"
+	fo "v/finos"
 )
 
+// Card represents the financial object, Credit/Debit cards.
 type Card struct {
 	gorm.Model
 	Name  string
 	Owner string
 }
 
-func (cd Card) Describe() string {
-	descr := fmt.Sprintf("The %v card belongs to %v.", cd.Name, cd.Owner)
-	return descr
+// Save persists the Card instance. If fields are not of valid form, err will
+// say why.
+func (cd fo.Card) Save() {
+	db.SaveCard(cd)
 }
 
-func (cd Card) Save() {
-	db := database.MakeConnection()
-	db.AutoMigrate(&Card{})
+// Show obtains a card to report. Returns a report of type string.
+func (cd fo.Card) List() {
+	cards := database.getCards()
 
-	fmt.Println(cd)
-	fmt.Println(&cd)
-
-	//db.Create(&cd)
+	for _, cd := range cards {
+		descr := cd.describe()
+		fmt.Println(descr)
+	}
 }
 
-func Show() {
-	var card Card
-	db := database.MakeConnection()
-	result := db.First(&card)
-	fmt.Printf("%T", result.Name)
-
+func (cd fo.Card) describe() string {
+	Println("The %v card belongs to %v.", cd.Name, cd.Owner)
 }
 
 /*

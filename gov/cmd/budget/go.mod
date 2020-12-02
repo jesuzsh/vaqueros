@@ -7,6 +7,6 @@ replace v/cards => ../../pkg/cards
 replace v/database => ../../pkg/database
 
 require (
-	v/cards v0.0.0-00010101000000-000000000000 // indirect
+	v/cards v0.0.0-00010101000000-000000000000
 	v/database v0.0.0-00010101000000-000000000000 // indirect
 )

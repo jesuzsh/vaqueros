@@ -3,13 +3,17 @@ package main
 import (
 	"fmt"
 
-	"v/cards"
+	"v/finos"
+	"v/migrations"
 )
 
+type FinO interface {
+	List()
+}
+
 func main() {
+	migrations.Migrate()
+
 	fmt.Println("Welcome to your budget.")
-	cd := cards.Card{Name: "Amex", Owner: "Jesus"}
-	cd.Save()
-	//cards.Show()
-	fmt.Println(cd.Describe())
+
 }

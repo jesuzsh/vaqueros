@@ -3,16 +3,24 @@ package database
 import (
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	"v/cards"
 )
 
-func MakeConnection() *gorm.DB {
+func open() *gorm.DB {
 	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
-
 	if err != nil {
 		panic("failed to connect database")
 	}
 
-	//db.AutoMigrate(&cards.Card{})
-
 	return db
+}
+
+func Migrate() {
+	db := open()
+	db.AutoMigrate(&Card{})
+}
+
+func SaveCard() {
+	db := open()
+	db.Create(cd)
 }

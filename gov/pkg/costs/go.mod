@@ -1,4 +1,4 @@
-module v.com/cards
+module v.com/costs
 
 go 1.13
 

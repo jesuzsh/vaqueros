@@ -3,13 +3,11 @@ package main
 import (
 	"fmt"
 
-	"v/cards"
+	db "v.com/database"
 )
 
 func main() {
 	fmt.Println("Welcome to your budget.")
-	//cd := cards.Card{Name: "Chime", Owner: "Jesus"}
-	//cd.Save()
-	cards.List()
-	//fmt.Println(cd.Describe())
+
+	db.ListCards()
 }

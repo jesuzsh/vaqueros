@@ -1,36 +1,28 @@
 from receipt import Receipt
-from database import Database
+from choice import Choice
+from ui import options
 
 def main():
     print('Let\'s budget shit.')
     options()
+
     budgeting()
 
-def options():
-    print('''
-    \t[v] View budget
-    \t[a] Add cost
-    \t[q] Quit
-    \t[u]
-    \t[e]
-    \t[r]
-    \t[o]
-    \t[s] Summary
-    ''')
-
 def budgeting():
-    c = input()
-    c = c.upper()
-    while c != 'Q':
-        if c == 'V':
+
+    chioce = input()
+    choice = c.upper()
+
+    while choice != Choice.quit:
+        if choice == Choice.view:
             view_budget()
-        elif c == 'A':
+        elif choice == Choice.add:
             receipt = add_cost()
             if item_confirmation(receipt):
                 print('Congratulations, you have less money.')
             else:
                 print('One more thing you don\'t have.')
-        elif c == 'S':
+        elif choice == Choice.save:
             summary()
 
         options()

@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	"gorm.io/gorm"
-	db "v/database"
 )
 
 type Card struct {
@@ -14,15 +13,6 @@ type Card struct {
 	Owner string
 }
 
-func (cd Card) Describe() string {
-	descr := fmt.Sprintf("The %v card belongs to %v. ID: %v", cd.Name, cd.Owner, cd.ID)
-	return descr
-}
-
-func (cd Card) Save() {
-	db.Save(Card)
-}
-
-func List() {
-	db.List([]Card{})
+func (cd Card) Describe() {
+	fmt.Printf("The %v card belongs to %v. ID: %v", cd.Name, cd.Owner, cd.ID)
 }

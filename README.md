@@ -22,8 +22,31 @@ Sign up on the official [GitHub website](https://github.com/).
 Time to get you a hold of the code that you're going to have to be making
 changes to. You're currently looking at this code through a repository hosted
 remotely on GitHub servers. Through the use of the version control system, git,
-we can interact with this repository, push and pulling any changes. 
+we can interact with this repository, push and pulling any changes (see
+Appendix). 
 
 #### Download [git](https://git-scm.com/).
+
+Using git, clone this repository. Options for this can be seen in the [GitHub
+repository UI](https://github.com/jesuzsh/vaqueros). A quick way to do this
+using the git CLI through HTTP.
+
+    git clone https://github.com/jesuzsh/vaqueros
+
+
+### Step 3: Write code.
+See the following sections for what needs to be done. 
+
+
+### TODO
+
+### Appendix
+Creating branch `the-calvary`, commiting changes, setting up remote. 
+
+    git checkout -b the-calvary
+    git commit -m "describing the committed change"
+    git push --set-upstream origin the-calvary
+
+
 
 

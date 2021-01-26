@@ -1,4 +1,4 @@
-You I'm going to start writing those set of instructions that would get you
+Yo I'm going to start writing those set of instructions that would get you
 started that I mentioned this one time. I want you to know that you ask me any
 question you have at anypoint. I also need this done for myself so you helping
 me will not only show you what you need to know in python and aid me in
@@ -40,6 +40,11 @@ See the following sections for what needs to be done.
 
 ### TODO
 
+* Database connectivity
+* Intake of expeditures, save entries
+* Various way to view/visualize entries, dashboard
+
+
 ### Appendix
 Creating branch `the-calvary`, commiting changes, setting up remote. 
 
@@ -47,6 +52,10 @@ Creating branch `the-calvary`, commiting changes, setting up remote.
     git commit -m "describing the committed change"
     git push --set-upstream origin the-calvary
 
+View local branches. The current branch should be marked. 
 
+    git branch
 
+View local and remote branches
 
+    git branch -a

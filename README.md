@@ -56,31 +56,25 @@ brief description:
 holding relative information about a transactions. The bulk of the data managed
 by this application is going to be all of the expeditures that'll accumulate
 over time.
-```
-name # Wal-Mart
-amount (USD) # 86.43
-card # 3
-category # Groceries
-```
+  name # Wal-Mart
+  amount (USD) # 86.43
+  card # 3
+  category # Groceries
 
 * Cards: In order to have the functionality of seperating expenditiures by card,
 we need to keep track of the cards involved. The idea will be to have unique IDs
 for each card. This way when inputting an expenditure, a card ID can be given for
 the relationship to exist.
-```
-id # 1
-name # Amex
-owner # Jesus
-```
+  id # 1
+  name # Amex
+  owner # Jesus
 
 * Categories: must exist to be able to see what are the areas of spending.
-```
-name # Groceries
-is_essential # True
+  name # Groceries
+  is_essential # True
 
-name # Video Game
-is_essential # False
-```
+  name # Video Game
+  is_essential # False
 
 * Their relationships. This is an important concept in the world of relational
 database and SQL. Objects stored in this database have relationships with one

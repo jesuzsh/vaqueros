@@ -31,7 +31,7 @@ Using git, clone this repository. Options for this can be seen in the [GitHub
 repository UI](https://github.com/jesuzsh/vaqueros). A quick way to do this
 using the git CLI through HTTP.
 
-    git clone https://github.com/jesuzsh/vaqueros
+  git clone https://github.com/jesuzsh/vaqueros
 
 
 ### Step 3: Write code.
@@ -88,6 +88,13 @@ to make a database schema. Every database should have some sort of schema. The
 purpose of the schema is to be a layout of all the data in the datastore.
 
 #### Database connectivity
+In this section we are going to start of with SQL and database setup. Soon we'll
+have to write the code that connects, reads from, writes to the database. For
+this project we're going to use SQL. The simplest sql database is 
+[SQLite](https://sqlite.org/index.html). Using SQLite we'll make a database
+whose schema is what we need for this project.
+[Official Documentation](https://sqlite.org/docs.html), it's not the best but
+it'll have a real nice technical definition of SQLite, one of many databases.
 
 #### Intake of expeditures, save entries
 
@@ -97,14 +104,14 @@ purpose of the schema is to be a layout of all the data in the datastore.
 ### Appendix
 Creating branch `the-calvary`, commiting changes, setting up remote. 
 
-    git checkout -b the-calvary
-    git commit -m "describing the committed change"
-    git push --set-upstream origin the-calvary
+  git checkout -b the-calvary
+  git commit -m "describing the committed change"
+  git push --set-upstream origin the-calvary
 
 View local branches. The current branch should be marked. 
 
-    git branch
+  git branch
 
 View local and remote branches
 
-    git branch -a
+  git branch -a

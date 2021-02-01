@@ -40,9 +40,64 @@ See the following sections for what needs to be done.
 
 ### TODO
 
-* Database connectivity
-* Intake of expeditures, save entries
-* Various way to view/visualize entries, dashboard
+#### Refactor
+This code was writting 2018, the python in this code isn't the best written.
+Not all of it fits the project we are completing, so we need to refactor the
+existing codebase. We basically need to make changes to the old code so it
+matches the current vision for the project.
+
+Probably best that the vision is described. For starters, I think it's pretty
+important that we are aware of the various entities that are going to exist in
+our application. These entities will, most likely, be designed to represent 
+real-world objects. The following is a list of current known entities and a 
+brief description:
+
+* Expeditures: A single unit of an expense. This will be responsible for 
+holding relative information about a transactions. The bulk of the data managed
+by this application is going to be all of the expeditures that'll accumulate
+over time.
+```
+name # Wal-Mart
+amount (USD) # 86.43
+card # 3
+category # Groceries
+```
+
+* Cards: In order to have the functionality of seperating expenditiures by card,
+we need to keep track of the cards involved. The idea will be to have unique IDs
+for each card. This way when inputting an expenditure, a card ID can be given for
+the relationship to exist.
+```
+id # 1
+name # Amex
+owner # Jesus
+```
+
+* Categories: must exist to be able to see what are the areas of spending.
+```
+name # Groceries
+is_essential # True
+
+name # Video Game
+is_essential # False
+```
+
+* Their relationships. This is an important concept in the world of relational
+database and SQL. Objects stored in this database have relationships with one
+another. For example, everytime an expenditure is submitted it will have key 
+pieces of metadata associated with it. It will have a dollar ammount that is
+the cost of that specific expenditure.
+
+For now we will work with the above drafts of the field involved with each
+entity. Using the examples and their fields, we have enough information needed
+to make a database schema. Every database should have some sort of schema. The
+purpose of the schema is to be a layout of all the data in the datastore.
+
+#### Database connectivity
+
+#### Intake of expeditures, save entries
+
+#### Various way to view/visualize entries, dashboard
 
 
 ### Appendix

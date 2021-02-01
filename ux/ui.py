@@ -14,3 +14,20 @@ def options():
         \t[r]
         \t[o]
         \t[s] Summary""")
+
+
+def select():
+    """
+    select is invoked when the user selection is required. Usually after the
+    presentation of options.
+
+    :param: None
+    :return: Choice
+    """
+    choice = input()
+
+
+def add_cost():
+    item = input("""
+        What  
+    """)

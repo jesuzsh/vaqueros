@@ -1,6 +1,7 @@
 from receipt import Receipt
-from choice import Choice
-from ui import options
+from ux.choice import Choice
+from ux.ui import options
+
 
 def main():
     print('Let\'s budget shit.')
@@ -8,10 +9,11 @@ def main():
 
     budgeting()
 
+
 def budgeting():
 
-    chioce = input()
-    choice = c.upper()
+    choice = input()
+    choice = choice.upper()
 
     while choice != Choice.quit:
         if choice == Choice.view:
@@ -22,12 +24,13 @@ def budgeting():
                 print('Congratulations, you have less money.')
             else:
                 print('One more thing you don\'t have.')
-        elif choice == Choice.save:
+        elif choice == Choice.summary:
             summary()
 
         options()
-        c = input()
-        c = c.upper()
+        choice = input()
+        choice = choice.upper()
+
 
 def view_budget():
     return
@@ -35,6 +38,8 @@ def view_budget():
 # Details about the cost are acquired, and a receipt for the new cost is
 # created. The receipt contains all the information for the new burden on
 # the budget. Way2go.
+
+
 def add_cost():
     item = input('''
 ===>What item would you like to add?
@@ -56,15 +61,21 @@ def add_cost():
 # step is important because, most of the time, whatever the user is trying
 # to do is not necessary for human life. Water isn't necessary for human
 # life.
+
+
 def item_confirmation(receipt):
     save_item(receipt)
     return True
 
+
 def save_item(receipt):
     return
 
+
 def summary():
+    print("Here is a summary of your accounts.")
     return
+
 
 if __name__ == '__main__':
     main()

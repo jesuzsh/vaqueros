@@ -40,7 +40,51 @@ See the following sections for what needs to be done.
 
 ### TODO
 
-* Database connectivity
+#### Database connectivity
+The first concept we will work with in this feature are virtual environment.
+This concept is important for every Python project because, usually, a Python
+project will have many dependencies, libraries that were installed,
+imported and used to build the final project. 
+
+There are a few tools and the simplest, probably most common, is
+[venv](https://docs.python.org/3/library/venv.html). This already comes with
+Python so we can just go straight to making a virtual environment.
+
+    python3 -m venv <path/to/virtual/environment>
+
+The above command will make a directory for you and that directory is the
+virtual environment. Now that you've created a virtual environment we can use
+that environment to keep track of the dependencies needed for the project we
+are working on. To activate your environment, use the following command:
+
+    source <path/to/virtual/environment>/bin/activate
+
+This should activate your virtual environment. You can check that you're
+properly using the virtual environment with the following command:
+
+    which python
+
+The output should be a Python that lives within your virtual environment
+directory. Also, run this command to see all the dependencies installed in your
+virtual environment:
+
+    pip freeze
+
+Initially this will be empty, but one of the first steps when you're getting up
+to speed on a Python project will be to install the dependencies. In Python,
+dependencies are installed using the tool 'pip'. Every project should have a
+requirements.txt file, its contents is the output of 'pip freeze'. One way to
+create a requirements.txt file from your virtual environment:
+
+    pip freeze > requirements.txt
+
+To install dependencies of a pre-existing requirements.txt you can do a single
+'pip install' command. 
+
+    pip install -r requirements.txt
+
+ =========
+
 * Intake of expeditures, save entries
 * Various way to view/visualize entries, dashboard
 

@@ -37,10 +37,7 @@ using the git CLI through HTTP.
 ### Step 3: Write code.
 See the following sections for what needs to be done. 
 
-
-### TODO
-
-#### Database connectivity
+#### Virtual Python Environments
 The first concept we will work with in this feature are virtual environment.
 This concept is important for every Python project because, usually, a Python
 project will have many dependencies, libraries that were installed,
@@ -72,18 +69,30 @@ virtual environment:
 
 Initially this will be empty, but one of the first steps when you're getting up
 to speed on a Python project will be to install the dependencies. In Python,
-dependencies are installed using the tool 'pip'. Every project should have a
-requirements.txt file, its contents is the output of 'pip freeze'. One way to
+dependencies are installed using the tool `pip`. Every project should have a
+requirements.txt file, its contents is the output of `pip freeze`. One way to
 create a requirements.txt file from your virtual environment:
 
     pip freeze > requirements.txt
 
 To install dependencies of a pre-existing requirements.txt you can do a single
-'pip install' command. 
+`pip install` command. 
 
     pip install -r requirements.txt
 
- =========
+Assuming your virtual environment is activated, after running the above
+command you should have all the dependencies needed for this python project to
+execute with full functionality. At the moment, there aren't too many
+dependencies in this project, yet. Python projects like to depend on many
+packages, so a tool to manage your virtual python environment is needed.
+
+#### Database connectivity
+Here is talk of database connectivity.
+
+We will be using a very popular python library known as
+[SQLAlchemy](https://www.sqlalchemy.org/). Straight from the website,
+"SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives
+application developers the full power and flexibility of SQL.
 
 * Intake of expeditures, save entries
 * Various way to view/visualize entries, dashboard

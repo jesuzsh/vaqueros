@@ -92,7 +92,11 @@ Here is talk of database connectivity.
 We will be using a very popular python library known as
 [SQLAlchemy](https://www.sqlalchemy.org/). Straight from the website,
 "SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives
-application developers the full power and flexibility of SQL.
+application developers the full power and flexibility of SQL."
+[This](https://docs.sqlalchemy.org/en/13/orm/tutorial.html) is an article I
+used to set up our SQLAlchemy code.
+
+### TODO
 
 * Intake of expeditures, save entries
 * Various way to view/visualize entries, dashboard

@@ -1,70 +1,55 @@
-from receipt import Receipt
-from choice import Choice
-from ui import options
+from flask import (
+    Flask,
+    render_template,
+    url_for,
+    redirect
 
-def main():
-    print('Let\'s budget shit.')
-    options()
+)
+from forms.transaction_form import TransactionForm
+from dba.database import Database
+import os
 
-    budgeting()
+app = Flask(__name__)
+app.config['SECRET_KEY'] = os.urandom(16)
 
-def budgeting():
 
-    chioce = input()
-    choice = c.upper()
+@app.route('/transaction', methods=['GET', 'POST'])
+def transaction():
+    """
 
-    while choice != Choice.quit:
-        if choice == Choice.view:
-            view_budget()
-        elif choice == Choice.add:
-            receipt = add_cost()
-            if item_confirmation(receipt):
-                print('Congratulations, you have less money.')
-            else:
-                print('One more thing you don\'t have.')
-        elif choice == Choice.save:
-            summary()
+    """
+    db = Database()
+    form = TransactionForm()
 
-        options()
-        c = input()
-        c = c.upper()
+    form.card.choices = db.get_cards()
+    form.category.choices = db.get_categories()
 
-def view_budget():
-    return
+    if form.validate_on_submit():
+        db.write_transaction(
+            form.name.data,
+            form.amount_usd.data,
+            form.card.data,
+            form.category.data
+        )
+        db.commit()
+        
+        return redirect(url_for("success"))
 
-# Details about the cost are acquired, and a receipt for the new cost is
-# created. The receipt contains all the information for the new burden on
-# the budget. Way2go.
-def add_cost():
-    item = input('''
-===>What item would you like to add?
-    ''')
-    cost = input('''
-=======>How much you dropping?
-        ''')
-    freq = input('''
-===========>How often are you dropping this?
-            (daily, weekly, monthly, once)
-            ''')
-    r = Receipt()
-    r.set_item(item)
-    r.set_cost(cost)
-    r.set_frequency(freq)
-    return r
+    return render_template(
+        'transactionForm.html',
+        form=form
+    )
 
-# Confirms with the user if this is something they really want to do. This
-# step is important because, most of the time, whatever the user is trying
-# to do is not necessary for human life. Water isn't necessary for human
-# life.
-def item_confirmation(receipt):
-    save_item(receipt)
-    return True
+@app.route('/success', methods=['GET'])
+def success():
+    db = Database()
 
-def save_item(receipt):
-    return
+    num_t = db.count_transactions()
 
-def summary():
-    return
+    print("Transaction count:", num_t)
+    print(db.get_transactions())
 
-if __name__ == '__main__':
-    main()
+    return render_template(
+        'success.html',
+        num_transactions=num_t
+    )

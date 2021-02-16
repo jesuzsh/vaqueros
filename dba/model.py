@@ -8,15 +8,14 @@ Base = declarative_base()
 class Transaction(Base):
     __tablename__ = 'transactions'
 
-    transaction_id = Column(String, primary_key=True)
+    transaction_id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String)
     amount_usd = Column(Float)
     card = Column(Integer)
     category = Column(Integer)
 
     def __repr__(self) -> str:
-        return f"<Transaction(name='{self.name}', amount($)={self.amount_usd})\
-            id={self.transaction_id}>"
+        return f"<Transaction(name='{self.name}', amount($)={self.amount_usd}, id={self.transaction_id})>"
 
 
 class Card(Base):
@@ -27,8 +26,7 @@ class Card(Base):
     owner = Column(String)
 
     def __repr__(self) -> str:
-        return f"<Card(name='{self.name}', owner='{self.owner}',\
-            id={self.card_id}>"
+        return f"<Card(name='{self.name}', owner='{self.owner}', id={self.card_id}>"
 
 
 class Category(Base):
@@ -39,5 +37,4 @@ class Category(Base):
     is_essential = Column(Boolean)
 
     def __repr__(self) -> str:
-        return f"<Category(name='{self.name}',is_essential=\
-            {self.is_essential}, id={self.category_id})>"
+        return f"<Category(name='{self.name}',is_essential={self.is_essential}, id={self.category_id})>"

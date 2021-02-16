@@ -33,9 +33,18 @@ using the git CLI through HTTP.
 
     git clone https://github.com/jesuzsh/vaqueros
 
+### Step 3: Run code.
+TLDR;
 
-### Step 3: Write code.
-See the following sections for what needs to be done. 
+    python3 -m venv venv
+    pip install -r requirements.txt
+    cd ..
+    pip install -e vaqueros
+    python vaqueros/init/create_datastore.py
+
+Needed databases will be created. The only remaining step would be to execute
+the script responsible for an application interface that interacts with the
+database. 
 
 #### Virtual Python Environments
 The first concept we will work with in this feature are virtual environment.
@@ -86,6 +95,11 @@ execute with full functionality. At the moment, there aren't too many
 dependencies in this project, yet. Python projects like to depend on many
 packages, so a tool to manage your virtual python environment is needed.
 
+
+### Step 3: Write code.
+See the following sections for what needs to be done. 
+
+
 #### Database connectivity
 Here is talk of database connectivity.
 
@@ -116,3 +130,10 @@ View local branches. The current branch should be marked.
 View local and remote branches
 
     git branch -a
+
+
+Quote [found](https://hackersandslackers.com/flask-wtforms-forms/) on form making,
+
+    "Handling form authentication and data submission is the pinnacle of app
+    development... He who cretes forms is a harbinger of a golden age: a hero
+    who brings us to the pinnacle of Western technology."

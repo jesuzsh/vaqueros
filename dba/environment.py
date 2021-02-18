@@ -9,13 +9,11 @@ def build_engine():
 
     :return: SQLAlchemy engine
     """
-    print("Building the SQLAlchemy engine.")
-
     filepath = os.path.dirname(os.path.realpath(__file__))
     db_path = filepath + '/../data/testy.db'
 
-    print(db_path)
-    return create_engine('sqlite:///' + db_path)
+    return create_engine('sqlite:///' + db_path, echo=True, future=True)
+
 
 def create_session():
     """
@@ -26,5 +24,5 @@ def create_session():
     """
     engine = build_engine()
     Session = sessionmaker(bind=engine)
-    
+
     return Session()

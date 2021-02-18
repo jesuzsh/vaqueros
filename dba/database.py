@@ -3,14 +3,46 @@ The data layer of the application. This is where all transaction with the
 database are going to live. The application layer is to export functions from
 this file.
 """
-from dba.model import Transaction
-from dba.environment import create_session
-from sqlalchemy import func
+from dba.model import transaction, card, category
+from dba.environment import build_engine
+from sqlalchemy import func, insert, select
 
 
 class Database:
     def __init__(self):
-        self.session = create_session()
+        self.engine = build_engine()
+
+    def write(self, stmt):
+        """
+        Current way of writing to a database: SQLAlchemy Core
+        """
+        with self.engine.connect() as conn:
+            result = conn.execute(stmt)
+            conn.commit()
+
+    def all(self, stmt):
+        """
+        Method for getting all results of a query.
+
+        :param stmt: SQL statement
+
+        :return: List of Tuples, results from the SQL statement
+        """
+        with self.engine.connect() as conn:
+            result = conn.execute(stmt)
+            return result.all()
+
+    def scalar(self, stmt):
+        """
+        Method for getting scalar result from a statement.
+
+        :param stmt: SQL statement
+
+        :return: Single value
+        """
+        with self.engine.connect() as conn:
+            result = conn.execute(stmt)
+            return result.scalar()
 
     def get_cards(self):
         """
@@ -40,7 +72,9 @@ class Database:
 
         :return: List of Tuples
         """
-        return self.session.query(Transaction).all()
+        stmt = select(transaction)
+
+        return self.all(stmt)
 
     def count_transactions(self):
         """
@@ -48,32 +82,29 @@ class Database:
 
         :return: Integer
         """
-        return self.session.query(func.count(Transaction.transaction_id)).scalar()
+        stmt = select(func.count()).select_from(transaction)
 
-    def write(self, obj):
-        print("Adding", obj)
-        self.add(obj)
-        self.commit()
+        with self.engine.connect() as conn:
+            result = conn.execute(stmt)
+            return result.scalar()
 
     def write_transaction(self, name, amount_usd, card, category):
         """
-    
+
         :param name:
         :param amount_usd:
         :param card:
         :param category:
         """
         try:
-            new_t = Transaction(
-                        name=name,
-                        amount_usd=amount_usd,
-                        card=card,
-                        category=category
+            stmt = insert(transaction).values(
+                transaction_name=name,
+                amount_usd=amount_usd,
+                card_id=int(card),
+                category_id=int(category)
             )
 
-            self.write(new_t)
-
-            return None
+            self.write(stmt)
         except Exception as e:
             print(e)
 
@@ -86,17 +117,17 @@ class Database:
 
         :return: None
         """
-        try: 
+        try:
             new_c = Card(
-                        name=name,
-                        owner=owner
+                name=name,
+                owner=owner
             )
-            
+
             self.write(new_c)
         except Exception as e:
             print(e)
 
-    def write_category(name, is_essential):
+    def write_category(self, name, is_essential):
         """
         Write a new category to the database.
 
@@ -107,25 +138,10 @@ class Database:
         """
         try:
             new_c = Category(
-                        name=name,
-                        is_essential=is_essential
+                name=name,
+                is_essential=is_essential
             )
 
             self.write(new_c)
         except Exception as e:
             print(e)
-
-    def add(self, obj):
-        """
-        Add the given instance to the session.
-
-        :param obj: ORM instance
-        """
-        self.session.add(obj)
-
-
-    def commit(self):
-        """
-        Commit transactions with the database.
-        """
-        self.session.commit()

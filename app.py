@@ -31,14 +31,14 @@ def transaction():
             form.card.data,
             form.category.data
         )
-        db.commit()
-        
+
         return redirect(url_for("success"))
 
     return render_template(
         'transactionForm.html',
         form=form
     )
+
 
 @app.route('/success', methods=['GET'])
 def success():

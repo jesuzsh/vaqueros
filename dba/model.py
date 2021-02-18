@@ -1,40 +1,40 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, Float, Boolean
+from sqlalchemy import (
+    MetaData,
+    Table,
+    Column,
+    Integer,
+    String,
+    Float,
+    Boolean,
+    ForeignKey
+)
+#from dba.environment import build_engine
 
-Base = declarative_base()
+metadata = MetaData()
 
+transaction = Table('transaction', metadata,
+                    Column('transaction_id', Integer,
+                           primary_key=True, autoincrement=True),
+                    Column('transaction_name', String(30), nullable=False),
+                    Column('amount_usd', Float, nullable=False),
+                    Column('card_id', Integer,
+                           ForeignKey('card.card_id'), nullable=False),
+                    Column('category_id', Integer,
+                           ForeignKey('category.category_id'), nullable=False)
+                    )
 
-class Transaction(Base):
-    __tablename__ = 'transaction'
+card = Table('card', metadata,
+             Column('card_id', Integer,
+                    primary_key=True, autoincrement=True),
+             Column('name', String(30), nullable=True),
+             Column('owner', String(30))
+             )
 
-    transaction_id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String)
-    amount_usd = Column(Float)
-    card = Column(Integer)
-    category = Column(Integer)
+category = Table('category', metadata,
+                 Column('category_id', Integer,
+                        primary_key=True, autoincrement=True),
+                 Column('name', String(30), nullable=False),
+                 Column('is_essential', Boolean, nullable=False)
+                 )
 
-    def __repr__(self) -> str:
-        return f"<Transaction(name='{self.name}', amount($)={self.amount_usd}, id={self.transaction_id})>"
-
-
-class Card(Base):
-    __tablename__ = 'card'
-
-    card_id = Column(Integer, primary_key=True)
-    name = Column(String)
-    owner = Column(String)
-
-    def __repr__(self) -> str:
-        return f"<Card(name='{self.name}', owner='{self.owner}', id={self.card_id}>"
-
-
-class Category(Base):
-    __tablename__ = 'category'
-
-    category_id = Column(Integer, primary_key=True)
-    name = Column(String)
-    is_essential = Column(Boolean)
-
-    def __repr__(self) -> str:
-        return f"<Category(name='{self.name}',is_essential={self.is_essential}, id={self.category_id})>"
+# metadata.create_all(build_engine())

@@ -84,9 +84,7 @@ class Database:
         """
         stmt = select(func.count()).select_from(transaction)
 
-        with self.engine.connect() as conn:
-            result = conn.execute(stmt)
-            return result.scalar()
+        return self.scalar(stmt)
 
     def write_transaction(self, name, amount_usd, card, category):
         """

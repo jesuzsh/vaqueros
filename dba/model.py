@@ -6,7 +6,7 @@ Base = declarative_base()
 
 
 class Transaction(Base):
-    __tablename__ = 'transactions'
+    __tablename__ = 'transaction'
 
     transaction_id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String)
@@ -19,7 +19,7 @@ class Transaction(Base):
 
 
 class Card(Base):
-    __tablename__ = 'cards'
+    __tablename__ = 'card'
 
     card_id = Column(Integer, primary_key=True)
     name = Column(String)

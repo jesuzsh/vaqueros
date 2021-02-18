@@ -35,11 +35,19 @@ using the git CLI through HTTP.
 
 ### Step 3: Run code.
 TLDR;
-
+    # Create virtual environment
     python3 -m venv venv
+
+    # Activate python virtual environment
+    ./venv/Scripts/activate (Windows)
+    source venv/bin/activate (Mac/Linux)
+
+    # Install all current project dependencies
     pip install -r requirements.txt
     cd ..
     pip install -e vaqueros
+
+    # Create datastore (needed SQLite database)
     python vaqueros/init/create_datastore.py
 
 Needed databases will be created. The only remaining step would be to execute
@@ -68,7 +76,7 @@ are working on. To activate your environment, use the following command:
 This should activate your virtual environment. You can check that you're
 properly using the virtual environment with the following command:
 
-    which python
+    which python (Mac/Linux)
 
 The output should be a Python that lives within your virtual environment
 directory. Also, run this command to see all the dependencies installed in your
@@ -94,7 +102,6 @@ command you should have all the dependencies needed for this python project to
 execute with full functionality. At the moment, there aren't too many
 dependencies in this project, yet. Python projects like to depend on many
 packages, so a tool to manage your virtual python environment is needed.
-
 
 ### Step 3: Write code.
 See the following sections for what needs to be done. 
